@@ -290,8 +290,10 @@ function firstNamesAllCaps(runners) {
  * @returns an array containing only the runners that use the given `tShirtSize`.
  * The runners in the array appear in the same order they appear in the `runners` array.
 */
-function getRunnersByTShirtSize(/* CODE HERE */) {
-  /* CODE HERE */
+function getRunnersByTShirtSize(runners, tShirtSize) {
+  return runners.filter(runner => {
+    return runner.shirt_size === tShirtSize
+  })
 }
 
 /**
@@ -305,8 +307,10 @@ function getRunnersByTShirtSize(/* CODE HERE */) {
  * @param runners array of runners like the one inside the /data/runners.js file.
  * @returns a number which is the sum of the donations by all runners.
 */
-function tallyUpDonations(/* CODE HERE */) {
-  /* CODE HERE */
+function tallyUpDonations(runners) {
+  return runners.reduce((accumulator, currentValue) => {
+    return accumulator + currentValue.donation
+  }, 0)
 }
 
 /////////////// CLOSURES ///////////////
@@ -319,11 +323,11 @@ function tallyUpDonations(/* CODE HERE */) {
  * Study the code for counter1 and counter2. Answer the questions below.
  * 
  * 1. What is the difference between counter1 and counter2?
- * 
+ * Counter1 has a second function inside of it and counter2 just has it all built in 1 function.
  * 2. Which of the two uses a closure? How can you tell?
- * 
+ * counter1. It has a second function inside of it.
  * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better? 
- *
+ * In a big application so you can use count without counter. Smaller application where you only want a counter up`
 */
 
 // counter1 code
@@ -364,8 +368,15 @@ function counter2() {
  * counter() // should return 0
  * etc
 */
-function counterMakerWithLimit(/* CODE HERE */) {
-  /* CODE HERE */
+function counterMakerWithLimit(maxValue) {
+  let count = -1
+
+  return function counter() {
+    if (count === maxValue) {
+      count = -1
+    }
+    return ++count
+  }
 }
 
 /////////////// END OF CHALLENGE ///////////////
